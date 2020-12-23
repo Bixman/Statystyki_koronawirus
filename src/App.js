@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Navbar from "./components/Navbar.js";
+import MainTable from "./components/MainTable.js";
+import SearchBar from "./components/SearchBar.js";
+import "./App.scss";
 
 function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [apiStats, setApiStats] = useState([]);
+  const options = {
+    method: "GET",
+    url: "https://covid-193.p.rapidapi.com/statistics",
+    headers: {
+      "x-rapidapi-key": "21c05936a1msh957ddfcb8ebd453p1119c0jsne242179c9b7c",
+      "x-rapidapi-host": "covid-193.p.rapidapi.com"
+    }
+  };
+
+  function list() {
+    axios
+      .request(options)
+      .then(function(response) {
+        setApiStats(response.data.response);
+        console.log(apiStats);
+        setIsLoaded(true);
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+  }
+
+  useEffect(() => {
+    list();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar apiStats={apiStats} />
+      <div className="content">
+        <SearchBar apiStats={apiStats} />
+        <MainTable apiStats={apiStats} isLoaded={isLoaded} />
+      </div>
     </div>
   );
 }
