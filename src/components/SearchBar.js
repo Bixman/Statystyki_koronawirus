@@ -9,7 +9,7 @@ function SearchBar(props) {
   useEffect(() => {
     if (countryName !== "")
       setCountryNameFormat(
-        countryName[0].toUpperCase() + countryName.substr(1)
+        countryName[0].toUpperCase() + countryName.substr(1).toLowerCase()
       );
   }, [countryName, countryNameFormat]);
 
