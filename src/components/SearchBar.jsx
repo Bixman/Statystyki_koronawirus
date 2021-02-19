@@ -1,5 +1,5 @@
-import "../App.scss";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import uniqid from "uniqid";
 
 function SearchBar(props) {
   const [countryName, setCountryName] = useState("");
@@ -22,8 +22,9 @@ function SearchBar(props) {
   function checkCountry(e) {
     e.preventDefault();
     setChoosenCountry(
-      props.apiStats.filter(userFilter).map(stat => (
-        <ul>
+      props.apiStats.filter(userFilter).map((stat) => (
+        <ul key={uniqid()}>
+          <p className="countryName">{stat.country}</p>
           <li>Liczba przypadków: {stat.cases.total}</li>
           <li>Liczba zgonów: {stat.deaths.total}</li>
           <li>Nowe przypadki: {stat.cases.new}</li>
@@ -43,11 +44,10 @@ function SearchBar(props) {
           maxLength="25"
           value={countryName}
           required
-          onChange={e => setCountryName(e.target.value)}
+          onChange={(e) => setCountryName(e.target.value)}
         />
         <button onClick={checkCountry}>Sprawdź</button>
       </form>
-      <p>Wybrany kraj: {choosenCountry.country} </p>
       {choosenCountry}
     </div>
   );

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "./components/Navbar.js";
-import MainTable from "./components/MainTable.js";
-import SearchBar from "./components/SearchBar.js";
-import "./App.scss";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Navbar, Footer, Home, WorldMap } from "./components";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,7 +20,7 @@ function App() {
       .request(options)
       .then(function (response) {
         setApiStats(response.data.response);
-        console.log(apiStats);
+        console.log(response.data.response);
         setIsLoaded(true);
       })
       .catch(function (error) {
@@ -30,19 +28,24 @@ function App() {
       });
   }
 
-  console.log();
-
   useEffect(() => {
     list();
   }, []);
 
   return (
     <div className="App">
-      <Navbar apiStats={apiStats} />
-      <div className="content">
-        <SearchBar apiStats={apiStats} />
-        <MainTable apiStats={apiStats} isLoaded={isLoaded} />
-      </div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            component={() => <Home apiStats={apiStats} isLoaded={isLoaded} />}
+          />
+          <Route path="/worldmap" exact component={() => <WorldMap />} />
+        </Switch>
+        <Footer />
+      </Router>
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import "../App.scss";
 import uniqid from "uniqid";
+import React from "react";
 
 function MainTable(props) {
   function compare(a, b) {
@@ -21,7 +21,7 @@ function MainTable(props) {
   const allStats = props.apiStats
     .sort(compare)
     .filter(countriesFilter)
-    .map(stat => (
+    .map((stat) => (
       <tr key={uniqid()}>
         <th>{stat.country}</th>
         <th>{stat.cases.total}</th>
