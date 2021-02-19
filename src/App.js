@@ -13,22 +13,24 @@ function App() {
     url: "https://covid-193.p.rapidapi.com/statistics",
     headers: {
       "x-rapidapi-key": "21c05936a1msh957ddfcb8ebd453p1119c0jsne242179c9b7c",
-      "x-rapidapi-host": "covid-193.p.rapidapi.com"
-    }
+      "x-rapidapi-host": "covid-193.p.rapidapi.com",
+    },
   };
 
   function list() {
     axios
       .request(options)
-      .then(function(response) {
+      .then(function (response) {
         setApiStats(response.data.response);
         console.log(apiStats);
         setIsLoaded(true);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error(error);
       });
   }
+
+  console.log();
 
   useEffect(() => {
     list();
