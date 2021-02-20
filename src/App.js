@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navbar, Footer, Home, WorldMap } from "./components";
+import { Navbar, Footer, Home, Map } from "./components";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,8 +20,8 @@ function App() {
       .request(options)
       .then(function (response) {
         setApiStats(response.data.response);
-        console.log(response.data.response);
         setIsLoaded(true);
+        console.log(apiStats);
       })
       .catch(function (error) {
         console.error(error);
@@ -33,7 +33,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="app">
       <Router>
         <Navbar />
         <Switch>
@@ -42,7 +42,11 @@ function App() {
             exact
             component={() => <Home apiStats={apiStats} isLoaded={isLoaded} />}
           />
-          <Route path="/worldmap" exact component={() => <WorldMap />} />
+          <Route
+            path="/worldmap"
+            exact
+            component={() => <Map apiStats={apiStats} />}
+          />
         </Switch>
         <Footer />
       </Router>

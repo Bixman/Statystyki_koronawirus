@@ -2,13 +2,14 @@ import React from "react";
 import MainTable from "../components/MainTable";
 import SearchBar from "../components/SearchBar";
 import WorldTotal from "../components/WorldTotal";
+//import Trends from "../components/Trends";
 
 function Home(props) {
   return (
     <div className="home">
       <div className="mainContainer">
         <div className="sideBar">
-          <p>PPPP</p>
+          <p>ddd</p>
         </div>
         <div className="content">
           <SearchBar apiStats={props.apiStats} />

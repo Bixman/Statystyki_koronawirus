@@ -7,6 +7,17 @@
   color: #ffffff;
 }
 
+$primary: #3c91e6;
+$secondary: #46237a;
+$background: #95bf8f;
+$third: #251605;
+
+html,
+body {
+  background-color: $background;
+  min-height: 100vh;
+}
+
 .position {
   max-width: 760px;
   min-width: 500px;
@@ -15,16 +26,28 @@
 }
 
 .border {
-  border: 2px solid #ffffff;
+  border: 2px solid $third;
   border-radius: 15px;
 }
 
-body {
-  background-color: #ababab;
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
 .mainTable {
   @extend .position;
   overflow-x: auto;
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
 }
 
 table {
@@ -34,14 +57,14 @@ table {
   border-spacing: 0;
   border-collapse: collapse;
   thead {
-    background-color: #000000;
+    background-color: $third;
   }
   tbody {
     tr:nth-child(even) {
-      background-color: #545454;
+      background-color: $primary;
     }
     tr:nth-child(odd) {
-      background-color: #363636;
+      background-color: $secondary;
     }
   }
   th {
@@ -58,9 +81,9 @@ table {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: #363636;
+  background-color: $primary;
+  border-bottom: 2px solid $third;
   height: 50px;
-  border-bottom: 2px solid #ffffff;
   &Link {
     text-decoration: none;
   }
@@ -86,7 +109,7 @@ table {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #545454;
+  background-color: $primary;
 }
 
 .countryName {
@@ -94,20 +117,19 @@ table {
 }
 
 .totalCases {
-  position: sticky;
-  top: 100px;
+  margin-top: 50px;
   max-width: 500px;
   @extend .border;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #545454;
+  background-color: $primary;
   text-align: center;
   ul {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px;
-    background-color: #363636;
+    background-color: $secondary;
     @extend .border;
     min-width: 275px;
   }
@@ -128,4 +150,21 @@ table {
 
 .active {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.footer {
+  background-color: $primary;
+  border-top: 2px solid $third;
+  height: 50px;
+}
+
+.rsm-svg {
+  display: inline-block;
+  vertical-align: middle;
+  max-height: 85vh;
+  min-width: 98vw;
+}
+
+.worldMap {
+  flex: 1;
 }

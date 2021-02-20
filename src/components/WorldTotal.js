@@ -25,9 +25,9 @@ function WorldTotal(props) {
     .map((stat) => (
       <ul key={uniqid()}>
         <h2>World</h2>
-        <li>Przypadki: {stat.cases.total}</li>
-        <li>Zgony: {stat.deaths.total}</li>
-        <li>Wyzdrowiało: {stat.cases.recovered}</li>
+        <li>Cases: {stat.cases.total}</li>
+        <li>Deaths: {stat.deaths.total}</li>
+        <li>Recovered: {stat.cases.recovered}</li>
       </ul>
     ));
 
@@ -36,9 +36,9 @@ function WorldTotal(props) {
     .map((stat) => (
       <ul key={uniqid()}>
         <h2>{stat.country}</h2>
-        <li>Przypadki: {stat.cases.total}</li>
-        <li>Zgony: {stat.deaths.total}</li>
-        <li>Wyzdrowiało: {stat.cases.recovered}</li>
+        <li>Cases: {stat.cases.total}</li>
+        <li>Deaths: {stat.deaths.total}</li>
+        <li>Recovered: {stat.cases.recovered}</li>
       </ul>
     ));
 

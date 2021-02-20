@@ -25,10 +25,34 @@ function SearchBar(props) {
       props.apiStats.filter(userFilter).map((stat) => (
         <ul key={uniqid()}>
           <p className="countryName">{stat.country}</p>
-          <li>Liczba przypadków: {stat.cases.total}</li>
-          <li>Liczba zgonów: {stat.deaths.total}</li>
-          <li>Nowe przypadki: {stat.cases.new}</li>
-          <li>Liczba zgonów dzisiaj: {stat.deaths.new}</li>
+          <li>
+            Cases: {stat.cases.total != null ? stat.cases.total : "No data"}
+          </li>
+          <li>
+            Cases today: {stat.cases.new != null ? stat.cases.new : "No data"}
+          </li>
+          <li>
+            Active cases:{" "}
+            {stat.cases.active != null ? stat.cases.active : "No data"}
+          </li>
+          <li>
+            Critical cases:{" "}
+            {stat.cases.critical != null ? stat.cases.critical : "No data"}
+          </li>
+          <li>
+            Deaths: {stat.deaths.total != null ? stat.deaths.total : "No data"}
+          </li>
+          <li>
+            Deaths today:{" "}
+            {stat.deaths.new != null ? stat.deaths.new : "No data"}
+          </li>
+          <li>
+            Recovered:{" "}
+            {stat.cases.recovered != null ? stat.cases.recovered : "No data"}
+          </li>
+          <li>
+            Tests: {stat.tests.total != null ? stat.tests.total : "No data"}
+          </li>
         </ul>
       ))
     );
@@ -37,7 +61,7 @@ function SearchBar(props) {
   return (
     <div className="search">
       <form>
-        <label htmlFor="countrySearch">Wyszukaj kraj: </label>
+        <label htmlFor="countrySearch">Find country statistics: </label>
         <input
           type="text"
           id="countrySearch"
@@ -46,7 +70,7 @@ function SearchBar(props) {
           required
           onChange={(e) => setCountryName(e.target.value)}
         />
-        <button onClick={checkCountry}>Sprawdź</button>
+        <button onClick={checkCountry}>Search</button>
       </form>
       {choosenCountry}
     </div>
