@@ -18,6 +18,11 @@ function Navbar(props) {
             <p>World Map</p>
           </Link>
         </li>
+        <li className={props.location.pathname === "/charts" ? "active" : ""}>
+          <Link className="navbarLink" to="/charts">
+            <p>Charts</p>
+          </Link>
+        </li>
       </ul>
     </div>
   );

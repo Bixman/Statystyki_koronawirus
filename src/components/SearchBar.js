@@ -13,6 +13,19 @@ function SearchBar(props) {
       );
   }, [countryName, countryNameFormat]);
 
+  useEffect(() => {
+    if (choosenCountry.length === 0 && countryNameFormat.length > 0) {
+      setChoosenCountry(
+        <p>Country called {countryName} doesn&apos;t exist!</p>
+      );
+      setCountryName("");
+      setCountryNameFormat("");
+    } else {
+      setCountryName("");
+      setCountryNameFormat("");
+    }
+  }, [choosenCountry]);
+
   function userFilter(value) {
     if (value.country === countryNameFormat) {
       return value;
@@ -24,7 +37,7 @@ function SearchBar(props) {
     setChoosenCountry(
       props.apiStats.filter(userFilter).map((stat) => (
         <ul key={uniqid()}>
-          <p className="countryName">{stat.country}</p>
+          <p className="countryName">{countryNameFormat}</p>
           <li>
             Cases: {stat.cases.total != null ? stat.cases.total : "No data"}
           </li>
@@ -60,17 +73,16 @@ function SearchBar(props) {
 
   return (
     <div className="search">
+      <h2>Search</h2>
       <form>
-        <label htmlFor="countrySearch">Find country statistics: </label>
         <input
           type="text"
           id="countrySearch"
           maxLength="25"
           value={countryName}
-          required
           onChange={(e) => setCountryName(e.target.value)}
         />
-        <button onClick={checkCountry}>Search</button>
+        <button onClick={(e) => checkCountry(e)}>Search</button>
       </form>
       {choosenCountry}
     </div>

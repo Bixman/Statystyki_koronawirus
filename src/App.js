@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navbar, Footer, Home, Map } from "./components";
+import { Navbar, Footer, Home, Map, Charts } from "./components";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,6 +46,11 @@ function App() {
             path="/worldmap"
             exact
             component={() => <Map apiStats={apiStats} />}
+          />
+          <Route
+            path="/charts"
+            exact
+            component={() => <Charts apiStats={apiStats} />}
           />
         </Switch>
         <Footer />

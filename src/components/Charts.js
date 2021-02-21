@@ -1,7 +1,7 @@
 import React from "react";
 import uniqid from "uniqid";
 
-function Trends(props) {
+function Charts(props) {
   function compare(a, b) {
     if (a.cases.total > b.cases.total) {
       return -1;
@@ -32,7 +32,7 @@ function Trends(props) {
       </tr>
     ));
 
-  return <div className="trends">{allStats}</div>;
+  return <div className="charts">{allStats}</div>;
 }
 
-export default Trends;
+export default Charts;

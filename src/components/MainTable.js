@@ -114,35 +114,6 @@ function MainTable(props) {
       </tr>
     ));
 
-  /*function compare(a, b) {
-        if (a.country < b.country) {
-          return -1;
-        }
-        if (a.country > b.country) {
-          return 1;
-        }
-        return 0;
-      }
-
-  function countriesFilter(value) {
-    if (value.country !== value.continent) {
-      return value.country;
-    }
-  }
-
-  const allStats = props.apiStats
-    .sort(compare)
-    .filter(countriesFilter)
-    .map((stat) => (
-      <tr key={uniqid()}>
-        <th>{stat.country}</th>
-        <th>{stat.cases.total}</th>
-        <th>{stat.deaths.total}</th>
-        <th>{stat.tests.total}</th>
-        <th>{stat.cases.recovered}</th>
-      </tr>
-    ));*/
-
   return (
     <div className="mainTable">
       {!props.isLoaded ? (
@@ -161,7 +132,7 @@ function MainTable(props) {
                     }
                   }}
                 >
-                  Country
+                  Country{" "}
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "countryDown"
@@ -181,7 +152,7 @@ function MainTable(props) {
                     }
                   }}
                 >
-                  Cases
+                  Cases{" "}
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "casesDown"
@@ -201,7 +172,7 @@ function MainTable(props) {
                     }
                   }}
                 >
-                  Deaths
+                  Deaths{" "}
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "deathsDown"
@@ -221,7 +192,7 @@ function MainTable(props) {
                     }
                   }}
                 >
-                  Tests
+                  Tests{" "}
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "testsDown"
@@ -241,7 +212,7 @@ function MainTable(props) {
                     }
                   }}
                 >
-                  Recovered
+                  Recovered{" "}
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "recoveredDown"

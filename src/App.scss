@@ -103,13 +103,24 @@ table {
 }
 
 .search {
-  @extend .position;
   @extend .border;
-  min-width: none;
+  min-width: 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: $primary;
+  margin-top: 50px;
+  padding: 10px;
+  button {
+    background-color: $primary;
+    @extend .border;
+    padding: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: $third;
+    }
+  }
 }
 
 .countryName {
@@ -131,7 +142,7 @@ table {
     padding: 5px;
     background-color: $secondary;
     @extend .border;
-    min-width: 275px;
+    min-width: 200px;
   }
   li {
     list-style: none;
@@ -141,11 +152,6 @@ table {
 .mainContainer {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
-}
-
-.sideBar {
-  min-width: 300px;
-  max-width: 400px;
 }
 
 .active {
@@ -165,6 +171,12 @@ table {
   min-width: 98vw;
 }
 
-.worldMap {
+.worldMap,
+.home,
+.charts {
   flex: 1;
+}
+
+input {
+  color: $third;
 }
