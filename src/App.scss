@@ -180,3 +180,22 @@ table {
 input {
   color: $third;
 }
+
+.home p {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.charts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chartContainer {
+  width: 400px;
+  margin: 10px;
+  @extend .border;
+}

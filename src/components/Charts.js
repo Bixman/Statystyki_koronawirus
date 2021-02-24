@@ -1,38 +1,102 @@
-import React from "react";
-import uniqid from "uniqid";
+import React, { useState, useEffect } from "react";
+import { VictoryPie } from "victory";
 
 function Charts(props) {
-  function compare(a, b) {
-    if (a.cases.total > b.cases.total) {
-      return -1;
-    }
-    if (a.cases.total < b.cases.total) {
-      return 1;
-    }
-    return 0;
-  }
+  const [chartCasescontinents, setchartCasescontinents] = useState([]);
+
+  useEffect(() => {
+    setchartCasescontinents(casesContinents);
+  }, []);
 
   function countriesFilter(value) {
-    if (value.country !== value.continent) {
+    if (value.country === value.continent && value.country !== "All") {
       return value.country;
     }
   }
 
-  const allStats = props.apiStats
-    .sort(compare)
+  const casesContinents = props.apiStats
     .filter(countriesFilter)
-    .slice(0, 9)
-    .map((stat) => (
-      <tr key={uniqid()}>
-        <th>{stat.country}</th>
-        <th>{stat.cases.total}</th>
-        <th>{stat.deaths.total}</th>
-        <th>{stat.tests.total}</th>
-        <th>{stat.cases.recovered}</th>
-      </tr>
-    ));
+    .map((stat) => ({
+      x: `${stat.country}`,
+      y: stat.cases.total,
+    }));
 
-  return <div className="charts">{allStats}</div>;
+  return (
+    <div className="charts">
+      <div className="chartContainer">
+        <VictoryPie
+          events={[
+            {
+              target: "data",
+              eventHandlers: {
+                onMouseOver: () => {
+                  return [
+                    {
+                      target: "data",
+                      mutation: () => {
+                        return {
+                          style: Object.assign({}, props.style, {
+                            fill: "tomato",
+                          }),
+                        };
+                      },
+                    },
+                  ];
+                },
+                onMouseOut: () => {
+                  return [
+                    {
+                      target: "data",
+                      mutation: () => {
+                        return null;
+                      },
+                    },
+                  ];
+                },
+              },
+            },
+          ]}
+          data={chartCasescontinents}
+        />
+      </div>
+      <div className="chartContainer">
+        <VictoryPie
+          data={[
+            { x: "Cats", y: 35 },
+            { x: "Dogs", y: 40 },
+            { x: "Birds", y: 55 },
+          ]}
+        />
+      </div>
+      <div className="chartContainer">
+        <VictoryPie
+          data={[
+            { x: "Cats", y: 35 },
+            { x: "Dogs", y: 40 },
+            { x: "Birds", y: 55 },
+          ]}
+        />
+      </div>
+      <div className="chartContainer">
+        <VictoryPie
+          data={[
+            { x: "Cats", y: 35 },
+            { x: "Dogs", y: 40 },
+            { x: "Birds", y: 55 },
+          ]}
+        />
+      </div>
+      <div className="chartContainer">
+        <VictoryPie
+          data={[
+            { x: "Cats", y: 35 },
+            { x: "Dogs", y: 40 },
+            { x: "Birds", y: 55 },
+          ]}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default Charts;

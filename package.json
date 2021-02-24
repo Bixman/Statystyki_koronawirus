@@ -21,6 +21,7 @@
     "react-tooltip": "^4.2.14",
     "sass": "^1.30.0",
     "uniqid": "^5.2.0",
+    "victory": "^35.4.9",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
