@@ -21,7 +21,6 @@ function App() {
       .then(function (response) {
         setApiStats(response.data.response);
         setIsLoaded(true);
-        console.log(apiStats);
       })
       .catch(function (error) {
         console.error(error);
@@ -30,6 +29,7 @@ function App() {
 
   useEffect(() => {
     list();
+    console.log(apiStats);
   }, []);
 
   return (

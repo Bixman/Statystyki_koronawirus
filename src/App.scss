@@ -195,7 +195,13 @@ input {
 }
 
 .chartContainer {
-  width: 400px;
+  flex-shrink: 0;
+  justify-content: center;
+  background-color: $primary;
+  height: 400px;
   margin: 10px;
   @extend .border;
+  h2 {
+    text-align: center;
+  }
 }
