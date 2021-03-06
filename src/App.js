@@ -29,7 +29,6 @@ function App() {
 
   useEffect(() => {
     list();
-    console.log(apiStats);
   }, []);
 
   return (
@@ -52,6 +51,7 @@ function App() {
             exact
             component={() => <Charts apiStats={apiStats} />}
           />
+          <Route path="/robocik.txt" />
         </Switch>
         <Footer />
       </Router>
