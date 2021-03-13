@@ -7,10 +7,15 @@ function SearchBar(props) {
   const [choosenCountry, setChoosenCountry] = useState([]);
 
   useEffect(() => {
-    if (countryName !== "")
-      setCountryNameFormat(
-        countryName[0].toUpperCase() + countryName.substr(1).toLowerCase()
-      );
+    if (countryName !== "") {
+      if (!countryName.includes("-") && countryName != "USA") {
+        setCountryNameFormat(
+          countryName[0].toUpperCase() + countryName.substr(1).toLowerCase()
+        );
+      } else {
+        setCountryNameFormat(countryName);
+      }
+    }
   }, [countryName, countryNameFormat]);
 
   useEffect(() => {
@@ -18,12 +23,9 @@ function SearchBar(props) {
       setChoosenCountry(
         <p>Country called {countryName} doesn&apos;t exist!</p>
       );
-      setCountryName("");
-      setCountryNameFormat("");
-    } else {
-      setCountryName("");
-      setCountryNameFormat("");
     }
+    setCountryName("");
+    setCountryNameFormat("");
   }, [choosenCountry]);
 
   function userFilter(value) {
@@ -53,11 +55,19 @@ function SearchBar(props) {
             {stat.cases.critical != null ? stat.cases.critical : "No data"}
           </li>
           <li>
+            Cases per 1mln people:{" "}
+            {stat.cases["1M_pop"] != null ? stat.cases["1M_pop"] : "No data"}
+          </li>
+          <li>
             Deaths: {stat.deaths.total != null ? stat.deaths.total : "No data"}
           </li>
           <li>
             Deaths today:{" "}
             {stat.deaths.new != null ? stat.deaths.new : "No data"}
+          </li>
+          <li>
+            Deaths per 1mln people:{" "}
+            {stat.deaths["1M_pop"] != null ? stat.deaths["1M_pop"] : "No data"}
           </li>
           <li>
             Recovered:{" "}

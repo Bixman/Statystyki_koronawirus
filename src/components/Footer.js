@@ -4,7 +4,7 @@ function Footer() {
   return (
     <div className="footer">
       <footer>
-        <p>Last update 20.02.21</p>
+        <p>Last update 07.03.21</p>
       </footer>
     </div>
   );

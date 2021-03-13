@@ -136,8 +136,8 @@ function MainTable(props) {
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "countryDown"
-                        ? faSortAmountDown
-                        : faSortAmountUp
+                        ? faSortAmountUp
+                        : faSortAmountDown
                     }
                   />
                 </button>
@@ -156,8 +156,8 @@ function MainTable(props) {
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "casesDown"
-                        ? faSortAmountDown
-                        : faSortAmountUp
+                        ? faSortAmountUp
+                        : faSortAmountDown
                     }
                   />
                 </button>
@@ -176,8 +176,8 @@ function MainTable(props) {
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "deathsDown"
-                        ? faSortAmountDown
-                        : faSortAmountUp
+                        ? faSortAmountUp
+                        : faSortAmountDown
                     }
                   />
                 </button>
@@ -196,8 +196,8 @@ function MainTable(props) {
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "testsDown"
-                        ? faSortAmountDown
-                        : faSortAmountUp
+                        ? faSortAmountUp
+                        : faSortAmountDown
                     }
                   />
                 </button>
@@ -216,8 +216,8 @@ function MainTable(props) {
                   <FontAwesomeIcon
                     icon={
                       tableFilter == "recoveredDown"
-                        ? faSortAmountDown
-                        : faSortAmountUp
+                        ? faSortAmountUp
+                        : faSortAmountDown
                     }
                   />
                 </button>

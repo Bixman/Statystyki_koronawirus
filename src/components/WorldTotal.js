@@ -8,7 +8,7 @@ function WorldTotal(props) {
       value.country === "Asia" ||
       value.country === "Africa" ||
       value.country === "North-America" ||
-      value.country === "Australia" ||
+      value.country === "Oceania" ||
       value.country === "South-America"
     ) {
       return value;

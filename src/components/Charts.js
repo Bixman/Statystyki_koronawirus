@@ -41,11 +41,42 @@ function Charts(props) {
     }
   }
 
-  function compare(a, b) {
-    if (parseInt(a.cases["1M_pop"], 10) < parseInt(b.cases["1M_pop"], 10)) {
+  function deathsOneMln(value) {
+    if (value.deaths["1M_pop"]) return value.deaths["1M_pop"];
+  }
+
+  function compareCases(a, b) {
+    if (parseInt(a.cases["1M_pop"]) < parseInt(b.cases["1M_pop"])) {
       return 1;
     }
-    if (parseInt(a.cases["1M_pop"], 10) > parseInt(b.cases["1M_pop"], 10)) {
+    if (parseInt(a.cases["1M_pop"]) > parseInt(b.cases["1M_pop"])) {
+      return -1;
+    }
+  }
+
+  function compareDeaths(a, b) {
+    if (parseInt(a.deaths["1M_pop"]) < parseInt(b.deaths["1M_pop"])) {
+      return 1;
+    }
+    if (parseInt(a.deaths["1M_pop"]) > parseInt(b.deaths["1M_pop"])) {
+      return -1;
+    }
+  }
+
+  function compareActiveCases(a, b) {
+    if (a.cases.active < b.cases.active) {
+      return 1;
+    }
+    if (a.cases.active > b.cases.active) {
+      return -1;
+    }
+  }
+
+  function compareCriticalCases(a, b) {
+    if (a.cases.critical < b.cases.critical) {
+      return 1;
+    }
+    if (a.cases.critical > b.cases.critical) {
       return -1;
     }
   }
@@ -53,17 +84,45 @@ function Charts(props) {
   const casesContinentsWithWorld = props.apiStats
     .filter(continentsWithWorldFilter)
     .map((stat) => ({
-      x: `${stat.country}`,
+      x: stat.country,
       y: stat.cases.total,
     }));
 
   const casesPerMilion = props.apiStats
     .filter(countriesFilter)
-    .sort(compare)
+    .sort(compareCases)
     .slice(0, 10)
     .map((stat) => ({
-      x: `${stat.country}`,
+      x: stat.country,
       y: parseInt(stat.cases["1M_pop"], 10),
+    }));
+
+  const deathsPerMilion = props.apiStats
+    .filter(countriesFilter)
+    .filter(deathsOneMln)
+    .sort(compareDeaths)
+    .slice(0, 10)
+    .map((stat) => ({
+      x: stat.country,
+      y: parseInt(stat.deaths["1M_pop"], 10),
+    }));
+
+  const activeCases = props.apiStats
+    .filter(countriesFilter)
+    .sort(compareActiveCases)
+    .slice(0, 10)
+    .map((stat) => ({
+      x: stat.country,
+      y: stat.cases.active,
+    }));
+
+  const criticalCases = props.apiStats
+    .filter(countriesFilter)
+    .sort(compareCriticalCases)
+    .slice(0, 10)
+    .map((stat) => ({
+      x: stat.country,
+      y: stat.cases.critical,
     }));
 
   const chart = chartCasesContinents.map((stat) => ({
@@ -138,8 +197,9 @@ function Charts(props) {
         />
       </div>
       <div className="chartContainer">
-        <h2>Top 10 countries by cases per 1 milion people</h2>
+        <h2>Top 10 countries by cases per 1mln people</h2>
         <VictoryChart
+          padding={{ left: 65, top: 40, bottom: 20 }}
           domainPadding={25}
           containerComponent={
             <VictoryContainer style={{ height: "95%", width: "100%" }} />
@@ -151,23 +211,97 @@ function Charts(props) {
               tickLabels: { fill: "transparent" },
             }}
           />
-          <VictoryAxis
-            dependentAxis
-            crossAxis
-            width={400}
-            height={400}
-            standalone={false}
-          />
+          <VictoryAxis dependentAxis crossAxis standalone={false} />
           <VictoryBar
             labels={({ datum }) => datum.x}
-            labelComponent={<VictoryLabel angle={-90} textAnchor="end" />}
+            labelComponent={<VictoryLabel angle={-90} textAnchor="middle" />}
             style={{
               data: { fill: "#46237a" },
               labels: { fill: "white" },
             }}
             data={casesPerMilion}
           />
-          {console.log(casesPerMilion)}
+        </VictoryChart>
+      </div>
+      <div className="chartContainer">
+        <h2>Top 10 countries by deaths per 1mln people</h2>
+        <VictoryChart
+          padding={{ left: 65, top: 40, bottom: 20 }}
+          domainPadding={25}
+          containerComponent={
+            <VictoryContainer style={{ height: "95%", width: "100%" }} />
+          }
+        >
+          <VictoryAxis
+            crossAxis
+            style={{
+              tickLabels: { fill: "transparent" },
+            }}
+          />
+          <VictoryAxis dependentAxis crossAxis standalone={false} />
+          <VictoryBar
+            labels={({ datum }) => datum.x}
+            labelComponent={<VictoryLabel angle={-90} textAnchor="middle" />}
+            style={{
+              data: { fill: "#46237a" },
+              labels: { fill: "white" },
+            }}
+            data={deathsPerMilion}
+          />
+        </VictoryChart>
+      </div>
+      <div className="chartContainer">
+        <h2>Top 10 countries by active cases</h2>
+        <VictoryChart
+          padding={{ left: 65, top: 40, bottom: 20 }}
+          domainPadding={25}
+          containerComponent={
+            <VictoryContainer style={{ height: "95%", width: "100%" }} />
+          }
+        >
+          <VictoryAxis
+            crossAxis
+            style={{
+              tickLabels: { fill: "transparent" },
+            }}
+          />
+          <VictoryAxis dependentAxis crossAxis standalone={false} />
+          <VictoryBar
+            labels={({ datum }) => datum.x}
+            labelComponent={<VictoryLabel angle={-90} textAnchor="start" />}
+            style={{
+              data: { fill: "#46237a" },
+              labels: { fill: "white" },
+            }}
+            data={activeCases}
+          />
+        </VictoryChart>
+      </div>
+      <div className="chartContainer">
+        <h2>Top 10 countries by critical cases</h2>
+        <VictoryChart
+          padding={{ left: 65, top: 40, bottom: 20 }}
+          domainPadding={25}
+          containerComponent={
+            <VictoryContainer style={{ height: "95%", width: "100%" }} />
+          }
+        >
+          <VictoryAxis
+            crossAxis
+            style={{
+              tickLabels: { fill: "transparent" },
+            }}
+          />
+          <VictoryAxis dependentAxis crossAxis standalone={false} />
+          <VictoryBar
+            labels={({ datum }) => datum.x}
+            labelComponent={<VictoryLabel angle={-90} textAnchor="start" />}
+            style={{
+              data: { fill: "#46237a" },
+              labels: { fill: "white" },
+            }}
+            data={criticalCases}
+          />
         </VictoryChart>
       </div>
     </div>

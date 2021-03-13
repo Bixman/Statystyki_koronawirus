@@ -121,6 +121,16 @@ table {
       background-color: $third;
     }
   }
+  ul {
+    margin: 10px;
+    width: 100%;
+    justify-content: left;
+    align-items: left;
+  }
+  li {
+    list-style: none;
+    margin: 5px;
+  }
 }
 
 .countryName {
@@ -137,8 +147,7 @@ table {
   background-color: $primary;
   text-align: center;
   ul {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px;
     padding: 5px;
     background-color: $secondary;
     @extend .border;
@@ -183,9 +192,9 @@ input {
 
 .home p {
   text-align: center;
-  margin-top: 50px;
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .charts {

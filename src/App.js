@@ -15,12 +15,32 @@ function App() {
     },
   };
 
+  const options2 = {
+    method: "GET",
+    url:
+      "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/world",
+    headers: {
+      "x-rapidapi-key": "21c05936a1msh957ddfcb8ebd453p1119c0jsne242179c9b7c",
+      "x-rapidapi-host":
+        "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
+    },
+  };
+
   function list() {
     axios
       .request(options)
       .then(function (response) {
         setApiStats(response.data.response);
         setIsLoaded(true);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+
+    axios
+      .request(options2)
+      .then(function (response) {
+        console.log(response.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -51,8 +71,8 @@ function App() {
             exact
             component={() => <Charts apiStats={apiStats} />}
           />
-          <Route path="/robocik.txt" />
         </Switch>
+        {console.log(apiStats)}
         <Footer />
       </Router>
     </div>
