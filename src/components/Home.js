@@ -1,7 +1,7 @@
 import React from "react";
 import MainTable from "../components/MainTable";
-import SearchBar from "../components/SearchBar";
 import WorldTotal from "../components/WorldTotal";
+import SideMenu from "../components/SideMenu";
 
 function Home(props) {
   return (
@@ -11,14 +11,12 @@ function Home(props) {
       ) : (
         <div className="mainContainer">
           <div className="leftBar">
-            <SearchBar apiStats={props.apiStats} />
+            <SideMenu />
           </div>
 
           <div className="content">
-            <MainTable apiStats={props.apiStats} isLoaded={props.isLoaded} />
-          </div>
-          <div className="rightBar">
             <WorldTotal apiStats={props.apiStats} />
+            <MainTable apiStats={props.apiStats} isLoaded={props.isLoaded} />
           </div>
         </div>
       )}

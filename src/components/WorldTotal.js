@@ -28,6 +28,9 @@ function WorldTotal(props) {
         <li>Cases: {stat.cases.total}</li>
         <li>Deaths: {stat.deaths.total}</li>
         <li>Recovered: {stat.cases.recovered}</li>
+        <li>New cases: {stat.cases.new}</li>
+        <li>New deaths: {stat.deaths.new}</li>
+        <li>Active cases: {stat.cases.active}</li>
       </ul>
     ));
 
@@ -39,6 +42,9 @@ function WorldTotal(props) {
         <li>Cases: {stat.cases.total}</li>
         <li>Deaths: {stat.deaths.total}</li>
         <li>Recovered: {stat.cases.recovered}</li>
+        <li>New cases: {stat.cases.new}</li>
+        <li>New deaths: {stat.deaths.new}</li>
+        <li>Active cases: {stat.cases.active}</li>
       </ul>
     ));
 

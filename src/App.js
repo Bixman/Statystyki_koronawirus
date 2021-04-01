@@ -18,7 +18,7 @@ function App() {
   const options2 = {
     method: "GET",
     url:
-      "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/world",
+      "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/news/get-coronavirus-news/0",
     headers: {
       "x-rapidapi-key": "21c05936a1msh957ddfcb8ebd453p1119c0jsne242179c9b7c",
       "x-rapidapi-host":
@@ -32,6 +32,7 @@ function App() {
       .then(function (response) {
         setApiStats(response.data.response);
         setIsLoaded(true);
+        console.log(response.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -72,7 +73,6 @@ function App() {
             component={() => <Charts apiStats={apiStats} />}
           />
         </Switch>
-        {console.log(apiStats)}
         <Footer />
       </Router>
     </div>

@@ -93,7 +93,7 @@ table {
     list-style: none;
   }
   li {
-    :hover {
+    &:hover {
       background-color: rgba(0, 0, 0, 0.3);
     }
   }
@@ -102,34 +102,45 @@ table {
   }
 }
 
+.sideMenu {
+  display: flex;
+  flex-direction: column;
+  @extend .border;
+  margin-top: 50px;
+  background-color: $primary;
+  button {
+    padding: 5px;
+    margin: 5px;
+    font-weight: bold;
+    background-color: $primary;
+    @extend .border;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $secondary;
+    }
+  }
+}
+
 .search {
   @extend .border;
   min-width: 240px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   background-color: $primary;
   margin-top: 50px;
   padding: 10px;
-  button {
-    background-color: $primary;
+  input {
     @extend .border;
-    padding: 10px;
-    margin-left: 5px;
-    cursor: pointer;
-    &:hover {
-      background-color: $third;
+    background-color: $secondary;
+    color: #ffffff;
+    height: 30px;
+    padding: 5px;
+    &:hover,
+    &:focus {
+      background-color: rgba(0, 0, 0, 0.5);
     }
-  }
-  ul {
-    margin: 10px;
-    width: 100%;
-    justify-content: left;
-    align-items: left;
-  }
-  li {
-    list-style: none;
-    margin: 5px;
   }
 }
 
@@ -139,10 +150,8 @@ table {
 
 .totalCases {
   margin-top: 50px;
-  max-width: 500px;
   @extend .border;
   display: flex;
-  flex-direction: column;
   align-items: center;
   background-color: $primary;
   text-align: center;
@@ -160,7 +169,7 @@ table {
 
 .mainContainer {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr;
 }
 
 .active {
