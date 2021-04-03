@@ -3,57 +3,45 @@ import uniqid from "uniqid";
 
 function WorldTotal(props) {
   function totalContinentsFilter(value) {
-    if (
-      value.country === "Europe" ||
-      value.country === "Asia" ||
-      value.country === "Africa" ||
-      value.country === "North-America" ||
-      value.country === "Oceania" ||
-      value.country === "South-America"
-    ) {
+    if (value.country === props.continentChoosen) {
       return value;
     }
   }
-
-  function totalWorldFilter(value) {
-    if (value.country === "All") {
-      return value;
-    }
-  }
-  const totalWorldCases = props.apiStats
-    .filter(totalWorldFilter)
-    .map((stat) => (
-      <ul key={uniqid()}>
-        <h2>World</h2>
-        <li>Cases: {stat.cases.total}</li>
-        <li>Deaths: {stat.deaths.total}</li>
-        <li>Recovered: {stat.cases.recovered}</li>
-        <li>New cases: {stat.cases.new}</li>
-        <li>New deaths: {stat.deaths.new}</li>
-        <li>Active cases: {stat.cases.active}</li>
-      </ul>
-    ));
 
   const totalContinentsCases = props.apiStats
     .filter(totalContinentsFilter)
     .map((stat) => (
-      <ul key={uniqid()}>
-        <h2>{stat.country}</h2>
-        <li>Cases: {stat.cases.total}</li>
-        <li>Deaths: {stat.deaths.total}</li>
-        <li>Recovered: {stat.cases.recovered}</li>
-        <li>New cases: {stat.cases.new}</li>
-        <li>New deaths: {stat.deaths.new}</li>
-        <li>Active cases: {stat.cases.active}</li>
-      </ul>
+      <div className="totalCases" key={uniqid()}>
+        <div className="statBox">
+          <p>Cases</p>
+          <p>{stat.cases.total != null ? stat.cases.total : "No data"}</p>
+        </div>
+        <div className="statBox">
+          <p>Deaths</p>
+          <p>{stat.deaths.total != null ? stat.deaths.total : "No data"}</p>
+        </div>
+        <div className="statBox">
+          <p>Recovered</p>
+          <p>
+            {stat.cases.recovered != null ? stat.cases.recovered : "No data"}
+          </p>
+        </div>
+        <div className="statBox">
+          <p>New cases</p>
+          <p>{stat.cases.new != null ? stat.cases.new : "No data"}</p>
+        </div>
+        <div className="statBox">
+          <p>New deaths</p>
+          <p>{stat.deaths.new != null ? stat.deaths.new : "No data"}</p>
+        </div>
+        <div className="statBox">
+          <p>Active cases</p>
+          <p>{stat.cases.active != null ? stat.cases.active : "No data"}</p>
+        </div>
+      </div>
     ));
 
-  return (
-    <div className="totalCases">
-      {totalWorldCases}
-      {totalContinentsCases}
-    </div>
-  );
+  return <div>{totalContinentsCases}</div>;
 }
 
 export default WorldTotal;

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import MainTable from "../components/MainTable";
 import WorldTotal from "../components/WorldTotal";
 import SideMenu from "../components/SideMenu";
 
 function Home(props) {
+  const [continentChoosen, setContinentChoosen] = useState("All");
+  function chooseContinent(value) {
+    setContinentChoosen(value);
+  }
+
   return (
     <div className="home">
       {props.apiStats == "" ? (
@@ -11,12 +16,21 @@ function Home(props) {
       ) : (
         <div className="mainContainer">
           <div className="leftBar">
-            <SideMenu />
+            <SideMenu
+              chooseContinent={chooseContinent}
+              continentChoosen={continentChoosen}
+            />
           </div>
-
           <div className="content">
-            <WorldTotal apiStats={props.apiStats} />
-            <MainTable apiStats={props.apiStats} isLoaded={props.isLoaded} />
+            <WorldTotal
+              apiStats={props.apiStats}
+              continentChoosen={continentChoosen}
+            />
+            <MainTable
+              apiStats={props.apiStats}
+              isLoaded={props.isLoaded}
+              continentChoosen={continentChoosen}
+            />
           </div>
         </div>
       )}

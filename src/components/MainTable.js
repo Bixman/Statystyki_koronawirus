@@ -95,7 +95,15 @@ function MainTable(props) {
   }
 
   function countriesFilter(value) {
-    if (value.country !== value.continent) {
+    if (
+      value.country !== value.continent &&
+      value.continent == props.continentChoosen
+    ) {
+      return value.country;
+    } else if (
+      value.country !== value.continent &&
+      props.continentChoosen == "All"
+    ) {
       return value.country;
     }
   }
@@ -139,6 +147,7 @@ function MainTable(props) {
             <input
               type="text"
               id="countrySearch"
+              placeholder="Serach..."
               maxLength="25"
               onChange={(e) => countryName(e.target.value.toLowerCase())}
             />
