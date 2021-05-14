@@ -18,13 +18,6 @@ body {
   min-height: 100vh;
 }
 
-.position {
-  max-width: 760px;
-  min-width: 500px;
-  margin: 10px auto 10px auto;
-  padding: 10px;
-}
-
 .border {
   border: 2px solid $third;
   border-radius: 15px;
@@ -37,8 +30,7 @@ body {
 }
 
 .mainTable {
-  @extend .position;
-  overflow-x: auto;
+  margin: 10px auto 0px auto;
   button {
     background: none;
     color: inherit;
@@ -48,57 +40,40 @@ body {
     cursor: pointer;
     outline: inherit;
   }
-}
-
-table {
-  width: 100%;
-  margin: 10px 0;
-  text-align: center;
-  border-spacing: 0;
-  border-collapse: collapse;
-  thead {
-    background-color: $third;
+  .tableAll {
+    overflow: auto;
   }
-  tbody {
-    tr:nth-child(even) {
-      background-color: $primary;
-    }
-    tr:nth-child(odd) {
-      background-color: $secondary;
-    }
+  .tableBody {
+    height: 50vh;
   }
-  th {
-    padding: 15px 0;
-    border: none;
+  table {
+    width: 100%;
+    text-align: center;
     border-spacing: 0;
-  }
-}
-
-.navbar {
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background-color: $primary;
-  border-bottom: 2px solid $third;
-  height: 50px;
-  &Link {
-    text-decoration: none;
-  }
-  ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-  }
-  li {
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.3);
+    border-collapse: collapse;
+    tbody {
+      tr:nth-child(even) {
+        background-color: $primary;
+      }
+      tr:nth-child(odd) {
+        background-color: $secondary;
+      }
     }
-  }
-  p {
-    padding: 10px;
+    td,
+    th {
+      padding: 15px 0;
+      border: none;
+      border-spacing: 0;
+      min-width: 110px;
+    }
+    th:nth-child(1),
+    td:nth-child(1) {
+      min-width: 200px;
+    }
+
+    thead {
+      background-color: $third;
+    }
   }
 }
 
@@ -106,9 +81,8 @@ table {
   display: flex;
   flex-direction: column;
   @extend .border;
-  margin-top: 50px;
   background-color: $primary;
-  margin-right: 10px;
+  margin: 10px 10px 10px 0;
   min-width: 200px;
   button {
     padding: 5px;
@@ -128,6 +102,36 @@ table {
   }
 }
 
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: $primary;
+  border-bottom: 2px solid $third;
+  height: 50px;
+  margin-bottom: 10px;
+  z-index: 1;
+  &Link {
+    text-decoration: none;
+  }
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+  li {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+  p {
+    padding: 10px;
+  }
+}
+
 .search {
   @extend .border;
   min-width: 240px;
@@ -136,6 +140,7 @@ table {
   align-items: center;
   background-color: $primary;
   padding: 10px;
+  margin-bottom: 10px;
   input {
     @extend .border;
     background-color: $secondary;
@@ -154,7 +159,6 @@ table {
 }
 
 .totalCases {
-  margin-top: 50px;
   @extend .border;
   background-color: $primary;
   text-align: center;
@@ -165,15 +169,10 @@ table {
   .statBox {
     background-color: $secondary;
     @extend .border;
-    margin: 10px;
+    margin: 5px;
     flex: 1;
-    min-width: 400px;
+    min-width: 300px;
   }
-}
-
-.mainContainer {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
 }
 
 .active {
@@ -195,7 +194,8 @@ table {
 
 .worldMap,
 .home,
-.charts {
+.charts,
+.news {
   flex: 1;
 }
 
@@ -220,11 +220,209 @@ input {
   justify-content: center;
   background-color: $primary;
   height: 400px;
-  width: 600px;
+  max-width: 600px;
   margin: 10px;
   @extend .border;
+  position: relative;
+  z-index: 0;
   h2 {
     text-align: center;
     margin-bottom: 10px;
   }
+}
+
+.news {
+  max-width: 900px;
+  margin: 10px auto 10px auto;
+}
+
+.newsLine {
+  display: flex;
+  margin: 10px;
+  background-color: $secondary;
+  @extend .border;
+  border-radius: 15px;
+  text-decoration: none;
+
+  img {
+    margin: 5px;
+    width: 150px;
+    height: 150px;
+  }
+  h2 {
+    margin: 5px;
+    border-bottom: 2px solid $primary;
+  }
+  p {
+    margin: 5px;
+  }
+  &:hover,
+  :focus {
+    h2 {
+      color: $primary;
+    }
+  }
+}
+
+.newsDate {
+  text-align: right;
+}
+
+.newsImg {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .mainContainer {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .mainContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .sideMenu {
+    margin-right: 0;
+  }
+  .totalCases {
+    div {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px;
+      p {
+        font-size: 1em;
+        margin: 0;
+      }
+    }
+  }
+  .search {
+    h2 {
+      font-size: 1em;
+    }
+  }
+  .newsLine {
+    img {
+      margin: 0;
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  right: 16px;
+  top: 10px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #ffffff;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: $secondary;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #ffffff;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+  z-index: 2;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: $third;
+  padding-top: 2.5em;
+  font-size: 1.15em;
+  border-radius: 15px;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #ffffff;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.dropbtn {
+  background-color: #3498db;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #2980b9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: $primary;
+  width: 99%;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content button {
+  color: #ffffff;
+  text-decoration: none;
+  width: 98%;
+  display: block;
+  text-align: center;
+}
+
+.dropdown a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
 }

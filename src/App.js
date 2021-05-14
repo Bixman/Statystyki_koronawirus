@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navbar, Footer, Home, Map, Charts } from "./components";
+import { Navbar, Footer, Home, Map, Charts, News } from "./components";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [apiStats, setApiStats] = useState([]);
+  const [news, setNews] = useState([]);
   const options = {
     method: "GET",
     url: "https://covid-193.p.rapidapi.com/statistics",
@@ -32,7 +33,7 @@ function App() {
       .then(function (response) {
         setApiStats(response.data.response);
         setIsLoaded(true);
-        console.log(response.data);
+        //console.log(response.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -41,7 +42,8 @@ function App() {
     axios
       .request(options2)
       .then(function (response) {
-        console.log(response.data);
+        setNews(response.data.news);
+        //console.log(response.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -72,6 +74,7 @@ function App() {
             exact
             component={() => <Charts apiStats={apiStats} />}
           />
+          <Route path="/news" exact component={() => <News news={news} />} />
         </Switch>
         <Footer />
       </Router>
