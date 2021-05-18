@@ -42,37 +42,36 @@ body {
   }
   .tableAll {
     overflow: auto;
-  }
-  .tableBody {
+    width: 75vw;
     height: 50vh;
-  }
-  table {
-    width: 100%;
-    text-align: center;
-    border-spacing: 0;
-    border-collapse: collapse;
-    tbody {
-      tr:nth-child(even) {
-        background-color: $primary;
-      }
-      tr:nth-child(odd) {
-        background-color: $secondary;
-      }
-    }
-    td,
-    th {
-      padding: 15px 0;
-      border: none;
+    table {
+      width: 100%;
+      text-align: center;
       border-spacing: 0;
-      min-width: 110px;
-    }
-    th:nth-child(1),
-    td:nth-child(1) {
-      min-width: 200px;
-    }
+      border-collapse: collapse;
+      tbody {
+        tr:nth-child(even) {
+          background-color: $primary;
+        }
+        tr:nth-child(odd) {
+          background-color: $secondary;
+        }
+      }
+      td,
+      th {
+        padding: 15px 0;
+        border: none;
+        border-spacing: 0;
+        min-width: 110px;
+      }
+      th:nth-child(1),
+      td:nth-child(1) {
+        min-width: 200px;
+      }
 
-    thead {
-      background-color: $third;
+      thead {
+        background-color: $third;
+      }
     }
   }
 }
@@ -273,20 +272,25 @@ input {
   align-items: center;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 890px) {
   .mainContainer {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 75vw;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 890px) {
   .mainContainer {
     display: flex;
     flex-direction: column;
   }
   .sideMenu {
     margin-right: 0;
+  }
+  .mainTable {
+    .tableAll {
+      width: 100%;
+    }
   }
   .totalCases {
     div {
@@ -312,7 +316,13 @@ input {
     }
   }
 }
-
+@media only screen and (max-width: 620px) {
+  .totalCases {
+    .statBox {
+      min-width: 200px;
+    }
+  }
+}
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;

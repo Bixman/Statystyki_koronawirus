@@ -332,13 +332,8 @@ function MainTable(props) {
                   </th>
                 </tr>
               </thead>
+              <tbody>{allStats}</tbody>
             </table>
-
-            <div className="tableBody">
-              <table>
-                <tbody>{allStats}</tbody>
-              </table>
-            </div>
           </div>
         </div>
       )}
