@@ -15,7 +15,7 @@ function Navbar(props) {
   return (
     <div className="navbar">
       <Link className="navbarLink" to="/">
-        <h1>Corona</h1>
+        <h1>CoronaVirus</h1>
       </Link>
       <OnMobile>
         <Menu right>

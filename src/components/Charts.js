@@ -253,7 +253,7 @@ function Charts(props) {
       <div className="chartContainer">
         <h2>Top 10 countries by active cases</h2>
         <VictoryChart
-          padding={{ left: 65, top: 40, bottom: 20 }}
+          padding={{ left: 85, top: 40, bottom: 20 }}
           domainPadding={25}
           containerComponent={
             <VictoryContainer style={{ height: "95%", width: "100%" }} />
